@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: blue;
+            background-color:rgba(229,251,229);;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar {
+            background-color: rgba(132, 210, 132, 0.7); /* Semi-transparent green */
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+            color:red;
+        }
+
+        .navbar ul li a {
+            color: white;
+            color:blue;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgba(196, 241, 130, 0.3); /* Light hover effect */
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 80px; /* Space for the navbar */
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for better visibility */
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 20px; /* Space below the header */
+            background-color: rgba(160, 244, 246, 0.5); /* Semi-transparent background for text */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #28a745; /* Green button */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Crop Recommendation System</h1>
+        <ul>
+            <li><a href="/manual">Manual Input</a></li>
+            <li><a href="/region_select">Region-Based Input</a></li>
+        </ul>
+    </div>
+    <div class="header">
+        Crop Recommendation Using Machine Learning
+    </div>
+    <div class="content">
+        <h2>Welcome to the Crop Recommendation System</h2>
+        <p>Get the best crop recommendations based on your soil and weather conditions.</p>
+        <a href="/manual" class="btn">Get Started with Manual Input</a>
+        <a href="/region_select" class="btn" style="margin-left: 10px;">Get Started with Region Input</a>
+    </div>
+</body>
+</html>

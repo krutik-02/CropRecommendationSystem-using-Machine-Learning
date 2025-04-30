@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Region-Based Crop Recommendation</title>
+    <style>
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styling */
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+            color: #333;
+        }
+
+        /* Form Container Styling */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Result Section Styling */
+        .result-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Flexbox Layout for Result Data and Image */
+        .result-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* Styling for Image Card */
+        .image-card {
+            max-width: 250px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .image-card h4 {
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        /* Styling for Weather Information */
+        .weather-info {
+            max-width: 350px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .weather-info h3 {
+            margin-top: 0;
+        }
+
+        .weather-info p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .back-home a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        .back-home a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Enter Region and Crop Parameters</h1>
+
+    <div class="form-container">
+        <form action="/region_select" method="POST">
+            <div class="form-group">
+                <label for="Region">Region:</label>
+                <input type="text" name="Region" id="Region" required>
+            </div>
+            <div class="form-group">
+                <label for="Nitrogen">Nitrogen:</label>
+                <input type="number" name="Nitrogen" required>
+            </div>
+            <div class="form-group">
+                <label for="Phosphorus">Phosphorus:</label>
+                <input type="number" name="Phosphorus" required>
+            </div>
+            <div class="form-group">
+                <label for="Potassium">Potassium:</label>
+                <input type="number" name="Potassium" required>
+            </div>
+            <div class="form-group">
+                <label for="Ph">pH:</label>
+                <input type="number" name="Ph" step="0.01" required>
+            </div>
+
+            <button type="submit">Get Recommendation</button>
+        </form>
+
+        <div class="back-home">
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+
+    {% if result %}
+    <div class="result-container">
+        <h2>{{ result }}</h2>
+        <div class="result-content">
+            {% if crop_image %}
+            <div class="image-card">
+                <img src="{{ url_for('static', filename=crop_image) }}" alt="Crop Image">
+                <h4>Recommended Crop</h4>
+            </div>
+            {% endif %}
+
+            {% if weather %}
+            <div class="weather-info">
+                <h3>Weather Information:</h3>
+                <p>Temperature: {{ weather.temperature }} °C</p>
+                <p>Humidity: {{ weather.humidity }} %</p>
+                <p>Rainfall: {{ weather.rainfall }} mm</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>
